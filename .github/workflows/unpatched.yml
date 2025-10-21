@@ -14,12 +14,35 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - name: install packages
-        run: sudo apt-get update && sudo apt-get install -y libqt5webkit5-dev libqt5xmlpatterns5-dev libqt5svg5-dev qtbase5-dev
-      - name: build
-        run: qmake CONFIG+=silent && make
-      - name: verify binaries
+      
+      - name: Cache Qt packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            /var/cache/apt/archives
+          key: ${{ runner.os }}-qt5-${{ hashFiles('.github/workflows/unpatched.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-qt5-
+      
+      - name: Install Qt5 dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libqt5webkit5-dev \
+            libqt5xmlpatterns5-dev \
+            libqt5svg5-dev \
+            qtbase5-dev
+      
+      - name: Configure build
+        run: qmake CONFIG+=silent
+      
+      - name: Build
+        run: make -j$(nproc)
+      
+      - name: Verify binaries
         run: |
           ls -lh bin/
-          file bin/wkhtmltopdf || true
-          file bin/wkhtmltoimage || true
+          file bin/wkhtmltopdf
+          file bin/wkhtmltoimage
+          LD_LIBRARY_PATH=bin bin/wkhtmltopdf --version
+          LD_LIBRARY_PATH=bin bin/wkhtmltoimage --version
