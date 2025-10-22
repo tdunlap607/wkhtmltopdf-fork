@@ -1,12 +1,11 @@
 name: Official
 # This workflow builds official packages using external packaging repository
-# Currently disabled - requires wkhtmltopdf/packaging repository and complex build environment
-# To be re-enabled after basic CI is validated
 on:
   push:
-    branches: [ never-run ]  # Disabled temporarily
+    branches: [ master ]
   pull_request:
-    branches: [ never-run ]  # Disabled temporarily
+    branches: [ master ]
+  workflow_dispatch:  # Allow manual triggering for testing
 
 jobs:
   linux:

@@ -45,21 +45,32 @@ This document describes the CI/CD workflows for this repository.
 - Results available in GitHub Security tab
 - No external uploads
 
-## Disabled Workflows
-
 ### Official Builds
-**Status**: Temporarily disabled
+[![Official](https://github.com/tdunlap607/wkhtmltopdf-fork/workflows/Official/badge.svg)](https://github.com/tdunlap607/wkhtmltopdf-fork/actions/workflows/official.yml)
 
-**Reason**: Requires external `wkhtmltopdf/packaging` repository and complex multi-platform build environment.
+**Purpose**: Build official packages using external wkhtmltopdf/packaging repository.
 
-**Trigger branches**: `never-run` (effectively disabled)
+**Status**: ✅ Active
 
-**To re-enable**: Change trigger branches back to `master` after validating basic CI works.
+**Triggers**:
+- Push to `master` branch
+- Pull requests to `master` branch
+- Manual workflow dispatch
 
 **Platforms**:
-- Linux (Docker-based)
+- Linux (Docker-based on Ubuntu 22.04)
 - macOS 13
 - Windows 2022
+
+**Build Process**:
+- Uses external `wkhtmltopdf/packaging` repository
+- Builds with Qt 4.8 via custom build scripts
+- Creates platform-specific packages
+
+**Notes**:
+- No publishing steps - builds only
+- Artifacts remain local to workflow run
+- Requires complex multi-platform build environment
 
 ## Automation
 
