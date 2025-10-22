@@ -1,0 +1,16 @@
+# Dependabot configuration for keeping GitHub Actions up-to-date
+# This only updates GitHub Actions versions - no publishing or deployment
+version: 2
+updates:
+  # Keep GitHub Actions up-to-date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
+      prefix-development: "ci"
+    labels:
+      - "dependencies"
+      - "github-actions"

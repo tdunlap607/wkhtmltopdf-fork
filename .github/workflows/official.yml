@@ -1,22 +1,24 @@
 name: Official
+# This workflow builds official packages using external packaging repository
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:  # Allow manual triggering for testing
 
 jobs:
   linux:
     name: Qt 4.8 on Linux
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: wkhtmltopdf
           submodules: true
       - name: checkout packaging
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: wkhtmltopdf/packaging
           path: packaging
@@ -29,15 +31,15 @@ jobs:
 
   macos:
     name: Qt 4.8 on macOS
-    runs-on: macos-10.15
+    runs-on: macos-13
     steps:
       - name: checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: wkhtmltopdf
           submodules: true
       - name: checkout packaging
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: wkhtmltopdf/packaging
           path: packaging
@@ -54,15 +56,15 @@ jobs:
 
   windows:
     name: Qt 4.8 on Windows
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: wkhtmltopdf
           submodules: true
       - name: checkout packaging
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: wkhtmltopdf/packaging
           path: packaging
