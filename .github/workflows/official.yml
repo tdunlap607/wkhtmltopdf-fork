@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: wkhtmltopdf
           submodules: true
       - name: checkout packaging
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: wkhtmltopdf/packaging
           path: packaging
@@ -34,12 +34,12 @@ jobs:
     runs-on: macos-13
     steps:
       - name: checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: wkhtmltopdf
           submodules: true
       - name: checkout packaging
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: wkhtmltopdf/packaging
           path: packaging
@@ -59,12 +59,12 @@ jobs:
     runs-on: windows-2022
     steps:
       - name: checkout source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: wkhtmltopdf
           submodules: true
       - name: checkout packaging
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: wkhtmltopdf/packaging
           path: packaging

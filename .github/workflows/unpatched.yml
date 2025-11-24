@@ -14,7 +14,7 @@ jobs:
     name: Qt 5.15 on Linux
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       
       - name: Cache Qt packages
         uses: actions/cache@v4
